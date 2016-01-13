@@ -1,0 +1,12 @@
+(define (square a)
+    (* a a))
+
+(define (sum_of_squares a b)
+    (+ (square a) (square b)))
+
+(define (find_larger a b)
+    (if (< a b) b
+        a))
+(define (sos_of_larger_two a b c)
+    (if (= a (find_larger a b)) (sum_of_squares a (find_larger b c))
+         (sum_of_squares b (find_larger a c))))
