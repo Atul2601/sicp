@@ -1,0 +1,20 @@
+(define (squareroot x)
+    (if (> x 0) (squarerootIter x 1)
+        "Not defined"
+))
+
+(define (squarerootIter x guess)
+    (if (isGoodGuess x guess) guess
+        (squarerootIter x (improve x guess))))
+
+(define (isGoodGuess x guess)
+    (< (/ (absolute (- guess (improve x guess))) guess) 0.00000001))
+
+(define (absolute x)
+    (if (< x 0) (- x)
+        x))
+
+(define (improve x guess)
+    (/ (+ guess (/ x guess)) 2))
+
+(squareroot 0)
