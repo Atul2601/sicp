@@ -1,0 +1,27 @@
+"a bit of circus in function isGoodGuess for cube root of negative numbers"
+
+(define (cuberoot x)
+    (cubeRootIter x 1))
+
+(define (cubeRootIter x guess)
+    (if (isGoodGuess x guess) guess
+        (cubeRootIter x (improve x guess))))
+
+(define (isGoodGuess x guess)
+    (<
+       (/
+          (absolute (- (absolute guess) (absolute (improve x guess))))
+          (absolute guess))
+          0.000000001))
+
+(define (square x)
+    (* x x))
+
+(define (absolute x)
+    (if (< x 0) (- x)
+        x))
+
+(define (improve x y)
+    (/ (+ (/ x (square y)) (* 2 y)) 3))
+
+(cuberoot -27)
