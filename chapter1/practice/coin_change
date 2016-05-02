@@ -1,0 +1,27 @@
+//The number of ways to change amount a using n kinds of coins equals
+
+//the number of ways to change amount a using all but the first kind of coin, plus
+//the number of ways to change amount a - d using all n kinds of coins, where d is the denomination of the first kind of coin.
+
+(define (sortedDenomValueLookup index)
+	(cond ((= index 1) 1)
+	      ((= index 2) 5)
+	      ((= index 3) 10)
+	      ((= index 4) 25)
+	      ((= index 5) 50)
+	)
+)
+(define (coinChange amount)
+	(cc amount 5)
+)
+(define (cc amount denoms)
+	(cond ((= amount 0) 1)
+	      ((or (< amount 0) (< denoms 1)) 0)
+	      (else
+	      	(+ (cc (- amount (sortedDenomValueLookup denoms)) denoms)
+	      	   (cc amount (- denoms 1))
+	      	)
+	      )
+	)
+)
+(coinChange 100)
